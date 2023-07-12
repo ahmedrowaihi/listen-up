@@ -1,0 +1,55 @@
+{
+  "name": "@ahmedrowaihi/listen-up",
+  "description": "A simple HTTP server that listens on a port and prints out the request body to the console, with serveo tunneling support.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "private": false,
+  "author": "Ahmed Rowaihi <ahmedrowaihi@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedrowaihi/listen-up.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmedrowaihi/listen-up/issues"
+  },
+  "homepage": "https://github.com/ahmedrowaihi/listen-up",
+  "keywords": [
+    "http",
+    "server",
+    "listen",
+    "serveo",
+    "tunnel",
+    "logging"
+  ],
+  "bin": {
+    "listen-up": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "package.json",
+    "Readme.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "express": "^4.18.2",
+    "morgan-body": "^2.6.9",
+    "yargs": "^17.7.2"
+  },
+  "release-it": {
+    "git": {
+      "tagName": "${version}"
+    },
+    "npm": {
+      "publish": true
+    }
+  }
+}
