@@ -1,16 +1,17 @@
-# Listen-up | Quick Logging Server for busy Developers
+# Listen-up - Express Console Logging Server with Cloudflared Tunnel Support
 
-## Express Console Logging Server with SSH Serveo Tunnel Support
+[![npm version](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up.svg)](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a simple command-line interface to start an Express server that can optionally spawn an SSH tunnel using serveo.net. The server logs incoming requests to the console and can be used for testing or debugging APIs.
+This is a simple command-line interface to start an Express server that can optionally spawn an SSH tunnel using Cloudflared. The server logs incoming requests to the console and can be used for testing or debugging APIs.
 
-### Installation
+## Installation
 
 ```bash
 npm install -g @ahmedrowaihi/listen-up
 ```
 
-### Usage
+## Usage
 
 To start the server, run the following command:
 
@@ -22,10 +23,9 @@ Options:
 All options are **optional**.
 
 - -p, --port: The **local-port** on which the server should listen (Default: 80)
-- -t, --tunnel: Whether to spawn an SSH tunnel using serveo.net (Default: false)
-- -tp, --tunnel-port: The **remote-port** to use for the SSH tunnel (Default: 80)
+- -d, --domain: The **domain** to use for the SSH tunnel (Default: random)
 
-### Examples
+## Examples
 
 Start a server on port 3000:
 
@@ -33,17 +33,27 @@ Start a server on port 3000:
 listen-up -p 3000
 ```
 
-Start a server on port 3000 and spawn an SSH tunnel on port 8080:
+Start a server on port 3000 and tunnel it through Cloudflared:
+
+- Requires a **Cloudflare account** and a **Domain managed by Cloudflare**!
 
 ```bash
-listen-up -p 3000 -t -tp 8080
+listen-up -p 3000 -d example.com
 ```
 
-### License
+## Features
+
+- [x] Start an Express server on a specified port
+- [x] Log incoming requests to the console
+- [x] Optionally spawn an SSH tunnel using Cloudflared
+- [x] Automatically generate a random domain name for the SSH tunnel
+- [ ] Add Domain Dropdown to select from existing Cloudflare domains (requires Cloudflare API) use [cloudflare v4 apis](https://api.cloudflare.com/client/v4/zones).
+
+## License
 
 [MIT](https://opensource.org/license/mit/)
 
-### Credits
+## Credits
 
 [
 <img src="https://avatars.githubusercontent.com/u/67356781?v=4" width="100px;"/><br /><sub><b>Ahmed Rowaihi</b></sub>

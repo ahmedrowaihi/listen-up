@@ -23,16 +23,13 @@
     "logging"
   ],
   "bin": {
-    "listen-up": "./index.js"
+    "listen-up": "./dist/index.js"
   },
-  "files": [
-    "index.js",
-    "package.json",
-    "Readme.md"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "prestart": "tsc",
+    "start": "node ./dist/index.js",
+    "build": "tsc"
   },
   "publishConfig": {
     "access": "public"
@@ -40,8 +37,11 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
+    "cloudflared": "^0.4.0",
     "express": "^4.18.2",
     "morgan-body": "^2.6.9",
+    "nanospinner": "^1.1.0",
+    "readline-sync": "^1.4.10",
     "yargs": "^17.7.2"
   },
   "release-it": {
@@ -51,5 +51,8 @@
     "npm": {
       "publish": true
     }
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17"
   }
 }
