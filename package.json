@@ -1,6 +1,6 @@
 {
   "name": "@ahmedrowaihi/listen-up",
-  "description": "A simple HTTP server that listens on a port and prints out the request body to the console, with serveo tunneling support.",
+  "description": "A simple HTTP server that listens on a port and prints out the request body to the console, with cloudflared tunneling support.",
   "version": "2.0.0",
   "main": "index.js",
   "type": "module",
@@ -18,7 +18,8 @@
     "http",
     "server",
     "listen",
-    "serveo",
+    "cloudflare",
+    "cloudflared",
     "tunnel",
     "logging"
   ],
