@@ -71,8 +71,8 @@ export function _routeDnsToTunnel(domain: Domain) {
     readlineSync.question(
       "Enter your authorized domain (e.g. example.com): \n"
     );
-    DOMAIN = DOMAIN.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/$/, ""); // remove http(s)://, www. and trailing slash
-    const spinner = createSpinner("Routing DNS to tunnel...").start();
+  DOMAIN = DOMAIN.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/$/, ""); // remove http(s)://, www. and trailing slash
+  const spinner = createSpinner("Routing DNS to tunnel...").start();
   const result = spawnSync(
     bin,
     ["tunnel", "route", "dns", "-f", TUNNELNAME, `${TUNNELNAME}.${DOMAIN}`],
@@ -93,12 +93,12 @@ export function _routeDnsToTunnel(domain: Domain) {
   }
 }
 
-export async function _startTunnel(_tunnel: Tunnel, { port }) {
+export async function _startTunnel(_tunnel: Tunnel, port: number) {
   const { url, connections, child, stop } = tunnel({
     "--credentials-file": resolve(
       os.homedir(),
       ".cloudflared",
-      `${_tunnel.id}on`
+      `${_tunnel.id}.json`
     ),
     "--url": `http://localhost:${port}`,
     tunnel: TUNNELNAME,
@@ -117,4 +117,12 @@ export async function _startTunnel(_tunnel: Tunnel, { port }) {
     console.log("tunnel process exited with code", code);
     process.exit();
   });
+}
+
+export async function startTunnel({ d: domain, p: port }) {
+  await setup();
+  await cloudflaredLogin();
+  const _tunnel = await checkListenUpTunnelExist(domain);
+  console.log(chalk.blue("Starting tunnel..."));
+  _startTunnel(_tunnel, port);
 }

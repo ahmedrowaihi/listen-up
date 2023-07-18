@@ -11,28 +11,14 @@ const options = yargsParser(process.argv.slice(2), {
     p: 80,
     d: "",
   },
-}) as { port: number; domain: string; d: string };
+}) as { p: number; d: string };
 
-options.port = !isNaN(options.port) ? options.port : 80;
+options.p = !isNaN(options.p) ? options.p : 80;
 
 import chalk from "chalk";
+import { startTunnel } from "./cloudflared-tunnel.js";
 import { runServer } from "./log-server.js";
 runServer(options, () => {
-  console.log(chalk.blue(`Server listening on port ${options.port}`));
+  console.log(chalk.blue(`Server listening on port localhost:${options.p}`));
   if (options.d) startTunnel(options);
 });
-
-import {
-  checkListenUpTunnelExist,
-  cloudflaredLogin,
-  setup,
-  _startTunnel,
-} from "./cloudflared-tunnel.js";
-
-export async function startTunnel(options) {
-  await setup();
-  await cloudflaredLogin();
-  const _tunnel = await checkListenUpTunnelExist(options.d);
-  console.log(chalk.blue("Starting tunnel..."));
-  _startTunnel(_tunnel, options);
-}

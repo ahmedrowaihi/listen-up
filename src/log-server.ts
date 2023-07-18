@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan-body";
 import { handleRequest } from "./api.js";
 
-export function runServer({ port }, callback: () => void) {
+export function runServer({ p }, callback: () => void) {
   console.log("Starting server...");
   const app = express();
   morgan(app, {
@@ -14,5 +14,5 @@ export function runServer({ port }, callback: () => void) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.all("*", handleRequest);
-  app.listen(port, callback);
+  app.listen(p, callback);
 }
