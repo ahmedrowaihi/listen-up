@@ -32,28 +32,7 @@ export async function cloudflaredLogin() {
   return spawnSync(bin, ["login"], { stdio: "inherit" });
 }
 
-export async function checkListenUpTunnelExist(domain: Domain) {
-  console.log(chalk.blue("Checking for existing tunnels..."));
-  const result = spawnSync(bin, ["tunnel", "list"]);
-  if (result.status === 0) {
-    const lines = result.stdout.toString().trim().split("\n");
-    const tunnelDetails = {} as Tunnel;
-    let tunnelExist = lines.slice(2).some((line) => {
-      const [id, name] = line.trim().split(/\s+/);
-      if (name === TUNNELNAME) {
-        tunnelDetails.id = id;
-        tunnelDetails.name = name;
-        return true;
-      }
-    });
-    if (!tunnelExist) _createTunnel();
-    console.log(chalk.green("Found existing tunnel."));
-    _routeDnsToTunnel(domain);
-    return tunnelDetails;
-  } else throw new Error("Failed to list tunnels");
-}
-
-export function _createTunnel() {
+export function createTunnel() {
   const spinner = createSpinner("Creating tunnel...").start();
   const result = spawnSync(bin, ["tunnel", "create", TUNNELNAME], {
     stdio: "inherit",
@@ -65,7 +44,7 @@ export function _createTunnel() {
   else throw new Error("Failed to create tunnel.");
 }
 
-export function _routeDnsToTunnel(domain: Domain) {
+export function routeDnsToTunnel(domain: Domain) {
   let DOMAIN =
     domain ||
     readlineSync.question(
@@ -93,7 +72,32 @@ export function _routeDnsToTunnel(domain: Domain) {
   }
 }
 
-export async function _startTunnel(_tunnel: Tunnel, port: number) {
+export async function checkListenUpTunnelExist(domain: Domain) {
+  console.log(chalk.blue("Checking for existing tunnels..."));
+  const result = spawnSync(bin, ["tunnel", "list"]);
+  if (result.status === 0) {
+    const lines = result.stdout.toString().trim().split("\n");
+    const tunnelDetails = {} as Tunnel;
+    const tunnelExist = lines.slice(2).some((line) => {
+      const [id, name] = line.trim().split(/\s+/);
+      if (name === TUNNELNAME) {
+        tunnelDetails.id = id;
+        tunnelDetails.name = name;
+        return true;
+      }
+    });
+    if (!tunnelExist) createTunnel();
+    console.log(chalk.green("Found existing tunnel."));
+    routeDnsToTunnel(domain);
+    return tunnelDetails;
+  } else throw new Error("Failed to list tunnels");
+}
+
+
+
+
+
+export async function privateStartTunnel(_tunnel: Tunnel, port: number) {
   const { url, connections, child, stop } = tunnel({
     "--credentials-file": resolve(
       os.homedir(),
@@ -122,7 +126,7 @@ export async function _startTunnel(_tunnel: Tunnel, port: number) {
 export async function startTunnel({ d: domain, p: port }) {
   await setup();
   await cloudflaredLogin();
-  const _tunnel = await checkListenUpTunnelExist(domain);
+  const privateTunnel = await checkListenUpTunnelExist(domain);
   console.log(chalk.blue("Starting tunnel..."));
-  _startTunnel(_tunnel, port);
+  privateStartTunnel(privateTunnel, port);
 }

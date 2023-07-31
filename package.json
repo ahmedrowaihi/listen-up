@@ -30,7 +30,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "tsc",
     "start": "node ./dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint . && prettier ."
   },
   "publishConfig": {
     "access": "public"
@@ -43,7 +44,8 @@
     "morgan-body": "^2.6.9",
     "nanospinner": "^1.1.0",
     "readline-sync": "^1.4.10",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "yargs-parser": "^21.1.1"
   },
   "release-it": {
     "git": {
@@ -54,6 +56,17 @@
     }
   },
   "devDependencies": {
-    "@types/express": "^4.17.17"
+    "@types/express": "^4.17.17",
+    "@types/yargs-parser": "^21.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   }
 }
