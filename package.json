@@ -28,7 +28,7 @@
 	},
 	"scripts": {
 		"test": "jest",
-		"prestart": "tsc",
+		"prestart": "npm run build",
 		"start": "node ./dist/index.js",
 		"build": "tsc",
 		"lint": "eslint . && prettier . -w"
