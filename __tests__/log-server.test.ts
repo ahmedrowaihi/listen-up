@@ -2,7 +2,7 @@ import request from 'supertest';
 import { runServer } from '../src/log-server';
 
 describe('Log Server', () => {
-  let server;
+	let server: ReturnType<typeof runServer>;
 
   // Start the server before each test
   beforeEach((done) => {
@@ -18,7 +18,7 @@ describe('Log Server', () => {
     request(server)
       .get('/') // Assuming the server responds to GET requests at the root path
       .expect(200) // Expecting a 200 OK response
-      .end((err) => {
+			.end((err: unknown) => {
         if (err) return done(err);
         done();
       });
