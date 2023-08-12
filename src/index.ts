@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import yargsParser from "yargs-parser";
 import chalk from "chalk";
-import { startTunnel } from "./cloudflared-tunnel.js";
-import { runServer } from "./log-server.js";
+import { startTunnel } from "./cloudflared-tunnel";
+import { runServer } from "./log-server";
 
 const yargsParserOptions = {
   alias: { p: "port", d: "domain" },
