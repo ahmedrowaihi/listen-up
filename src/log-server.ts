@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan-body";
-import { handleRequest } from "./api.js";
+import { handleRequest } from "./api";
 
 export function runServer({ p }, callback: () => void) {
   console.log("Starting server...");
@@ -14,5 +14,5 @@ export function runServer({ p }, callback: () => void) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.all("*", handleRequest);
-  app.listen(p, callback);
+  return app.listen(p, callback); // Return the server instance
 }

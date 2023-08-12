@@ -6,8 +6,8 @@ import fs from "node:fs";
 import os from "node:os";
 import { resolve } from "node:path";
 import readlineSync from "readline-sync";
-import { TUNNELNAME } from "./constants.js";
-import type { Domain, Tunnel } from "./types.js";
+import { TUNNELNAME } from "./constants";
+import type { Domain, Tunnel } from "./types";
 
 export async function setup() {
   if (fs.existsSync(bin))
@@ -92,10 +92,6 @@ export async function checkListenUpTunnelExist(domain: Domain) {
     return tunnelDetails;
   } else throw new Error("Failed to list tunnels");
 }
-
-
-
-
 
 export async function privateStartTunnel(_tunnel: Tunnel, port: number) {
   const { url, connections, child, stop } = tunnel({
