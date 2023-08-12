@@ -1,7 +1,6 @@
 # Listen-up - Express Console Logging Server with Cloudflared Tunnel Support
 
-[![npm version](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up.svg)](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up.svg)](https://badge.fury.io/js/%40ahmedrowaihi%2Flisten-up) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is a simple command-line interface to start an Express server that can optionally spawn an SSH tunnel using Cloudflared. The server logs incoming requests to the console and can be used for testing or debugging APIs.
 
@@ -19,8 +18,7 @@ To start the server, run the following command:
 listen-up [options]
 ```
 
-Options:
-All options are **optional**.
+Options: All options are **optional**.
 
 - -p, --port: The **local-port** on which the server should listen (Default: 80)
 - -d, --domain: The **domain** to use for the SSH tunnel (Default: random)
@@ -55,6 +53,4 @@ listen-up -p 3000 -d example.com
 
 ## Credits
 
-[
-<img src="https://avatars.githubusercontent.com/u/67356781?v=4" width="100px;"/><br /><sub><b>Ahmed Rowaihi</b></sub>
-](https://github.com/ahmedrowaihi)
+[ <img src="https://avatars.githubusercontent.com/u/67356781?v=4" width="100px;"/><br /><sub><b>Ahmed Rowaihi</b></sub> ](https://github.com/ahmedrowaihi)

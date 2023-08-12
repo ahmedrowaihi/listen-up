@@ -1,5 +1,5 @@
 export type Domain = string;
 export type Tunnel = {
-  id: string;
-  name: string;
+	id: string;
+	name: string;
 };
