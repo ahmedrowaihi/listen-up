@@ -39,11 +39,9 @@
 	"license": "MIT",
 	"dependencies": {
 		"chalk": "^5.3.0",
-		"cloudflared": "^0.4.0",
+		"cloudflared-tunnel": "^1.0.0",
 		"express": "^4.18.2",
 		"morgan-body": "^2.6.9",
-		"nanospinner": "^1.1.0",
-		"readline-sync": "^1.4.10",
 		"yargs": "^17.7.2",
 		"yargs-parser": "^21.1.1"
 	},
