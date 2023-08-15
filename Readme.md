@@ -21,22 +21,22 @@ listen-up [options]
 Options: All options are **optional**.
 
 - -p, --port: The **local-port** on which the server should listen (Default: 80)
-- -d, --domain: The **domain** to use for the SSH tunnel (Default: random)
+- -c, --cloudflared: Whether to spawn a **Cloudflared tunnel** or not (Default: false)
 
 ## Examples
 
-Start a server on port 3000:
+Start a server on port 80:
 
 ```bash
-listen-up -p 3000
+listen-up -p 80
 ```
 
-Start a server on port 3000 and tunnel it through Cloudflared:
+Start a server on port 80 and tunnel it through Cloudflared:
 
 - Requires a **Cloudflare account** and a **Domain managed by Cloudflare**!
 
 ```bash
-listen-up -p 3000 -d example.com
+listen-up -p 80 -c
 ```
 
 ## Features
@@ -45,7 +45,6 @@ listen-up -p 3000 -d example.com
 - [x] Log incoming requests to the console
 - [x] Optionally spawn an SSH tunnel using Cloudflared
 - [x] Automatically generate a random domain name for the SSH tunnel
-- [ ] Add Domain Dropdown to select from existing Cloudflare domains (requires Cloudflare API) use [cloudflare v4 apis](https://api.cloudflare.com/client/v4/zones).
 
 ## License
 
