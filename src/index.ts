@@ -51,7 +51,7 @@ runServer(() => {
 	console.log(chalk.blue(`Server listening on port localhost:${port}`));
 	if (startTunnelFlag) {
 		startTunnel({
-			host: 'https://localhost',
+			host: 'http://localhost',
 			port: port,
 		});
 	}
